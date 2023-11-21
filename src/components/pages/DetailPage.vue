@@ -50,9 +50,27 @@ export default {
       modalOn: false,
       currentPicture: null,
       appPhone: '9182599393',
+      slide: {
+        options: {
+          rewind: true,
+          autoplay: true,
+          speed: 1000,
+          interval: 3000,
+          start: 1,
+          perPage: this.perPage,
+          perMove: 1,
+          gap: this.gap,
+          pagination: false,
+          classes: {
+            arrows: 'splide__arrows your-class-arrows',
+            arrow: 'splide__arrow your-class-arrow',
+            prev: 'splide__arrow--prev ',
+            next: 'splide__arrow--next',
+          }
+        }
+      }
     }
   },
-
   methods: {
     async getCar() {
       try {
@@ -165,30 +183,16 @@ export default {
       </div>
     </div>
   </main>
-  <Splide :options="{
-    rewind: true, autoplay: true, speed: 1000, interval: 3000, start: 1, perPage: perPage, perMove: 1, gap: gap, pagination: false,
-    classes: {
-      arrows: 'splide__arrows your-class-arrows',
-      arrow: 'splide__arrow your-class-arrow',
-      prev: 'splide__arrow--prev ',
-      next: 'splide__arrow--next',
-    },
-  }" aria-label="Car picture" class="splide__container">
-    <!-- <div class="splide__arrows">
-      <button type="button" class="splide__arrow splide__arrow--prev splide_my-btn-prev"></button>
-      <button type="button" class="splide__arrow splide__arrow--next splide_my-btn-next"></button>
-    </div> -->
+  <Splide :options="slide.options" aria-label="Car picture" class="splide__container">
     <SplideSlide class="splide-slide" v-for="picture in car.pictures" :key="picture.id">
       <div>
-        <img @click="showModal(true), getPictureSrc(picture.src)" class="splide-img" :src="picture.src"
-          :alt="picture.name">
+        <img
+            @click="showModal(true), getPictureSrc(picture.src)"
+            class="splide-img"
+            :src="picture.src"
+            :alt="picture.name"
+        >
       </div>
-      <!-- <transition name="component-fade" mode="out-in"> -->
-      <!-- <div class="modal" v-if="modalOn">
-        <button @click="showModal(false), console.log(modalOn)">НАЖМИ МЕНЯ</button>
-        <img class="splide-img" :src="picture.src" :alt="picture.name">
-      </div> -->
-      <!-- </transition> -->
     </SplideSlide>
 
   </Splide>
