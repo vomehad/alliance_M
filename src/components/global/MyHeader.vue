@@ -13,7 +13,7 @@ export default {
           email: '',
         },
       ],
-      menuType:false
+      menuType: false
     }
   },
   methods: {
@@ -51,7 +51,7 @@ export default {
             <img src="@img/logo-scroll.svg" alt="Logo">
           </router-link>
         </div>
-        <Navbar @click="changeMenu()" :className="menuType ? 'menu' : '_active'"/>
+        <Navbar @click="changeMenu()" :className="!menuType ? 'menu' : '_active'"/>
       </div>
       <div class="header_contact" data-da="menu_body,4,992" >
         <div
