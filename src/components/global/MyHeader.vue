@@ -66,7 +66,7 @@ export default {
           </a>
         </div>
       </div>
-      <div :class="'menu_icon '+ (menuType? '' : '_active')" @click="changeMenu()">
+      <div :class="'menu_icon '+ (!menuType? '' : '_active')" @click="changeMenu()">
         <span></span>
       </div>
     </div>
