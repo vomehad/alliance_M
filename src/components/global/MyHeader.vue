@@ -13,6 +13,7 @@ export default {
           email: '',
         },
       ],
+      menuType:false
     }
   },
   methods: {
@@ -27,7 +28,10 @@ export default {
     },
     prepareTel(tel) {
       return tel.replace(/7(\d{3})(\d{3})(\d{2})(\d{2})/, '7 ($1) $2 $3-$4');
-    }
+    },
+    changeMenu(){
+    this.menuType = !this.menuType
+  },
   },
   mounted() {
     this.getOffices();
@@ -38,7 +42,7 @@ export default {
 <template>
   <header class="header">
     <div class="header_container">
-      <div class="flex items-center">
+      <div class="flex items-center header_logo_block">
         <div class="header_logo" data-da="header_container,1,992">
           <router-link to="/" class="logo">
             <img src="@img/logo.svg" alt="Logo">
@@ -47,7 +51,7 @@ export default {
             <img src="@img/logo-scroll.svg" alt="Logo">
           </router-link>
         </div>
-        <Navbar :className="'menu'"/>
+        <Navbar @click="changeMenu()" :className="menuType ? 'menu' : '_active'"/>
       </div>
       <div class="header_contact" data-da="menu_body,4,992" >
         <div
@@ -62,7 +66,7 @@ export default {
           </a>
         </div>
       </div>
-      <div class="menu_icon">
+      <div :class="'menu_icon '+ (menuType? '' : '_active')" @click="changeMenu()">
         <span></span>
       </div>
     </div>
@@ -99,5 +103,10 @@ export default {
 </template>
 
 <style scoped>
-
+.header_logo_block {
+  @media (max-width:900px){
+    flex-direction: row-reverse;
+    gap: 1rem;
+  }
+}
 </style>
