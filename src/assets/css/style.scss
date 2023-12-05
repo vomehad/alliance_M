@@ -63,6 +63,9 @@ body {
       align-items: start;
       margin: 2rem 0px;
     }
+    @media  (max-width: 800px){
+      display: none;
+    }
   }
 }
 
@@ -760,10 +763,11 @@ body {
 
     @media (max-width: 992px) {
       gap: .5rem;
+      grid-template-columns: 1fr 1fr;
     }
 
     @media (max-width: 767.98px) {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: .8rem;
     }
 
@@ -1478,6 +1482,9 @@ body {
 
   @media (max-width: 1335px) {
     display: block;
+  }
+  @media (max-width:800px){
+  display: none;
   }
 }
 

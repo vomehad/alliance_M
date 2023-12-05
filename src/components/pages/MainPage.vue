@@ -264,6 +264,19 @@ export default {
   -ms-grid-columns: 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 24px;
+  @media (max-width: 992px) {
+      gap: .5rem;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media (max-width: 767.98px) {
+      grid-template-columns: 1fr;
+      gap: .8rem;
+    }
+
+    @media (max-width: 500px) {
+      grid-template-columns: 1fr;
+    }
 }
 
 .car_info {
