@@ -55,7 +55,7 @@ export default {
     },
     app: {
       phone: '9182599393'
-    }
+    },
   },
   methods: {
     getShortName() {
@@ -154,7 +154,7 @@ export default {
           <button
               type="button"
               class="btn-car"
-              @click="showModal()"
+              @click="$emit('show-modal')"
           >Оставить заявку</button>
 <!--          </a>-->
         </footer>

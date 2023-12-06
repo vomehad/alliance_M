@@ -279,17 +279,17 @@ export default {
         </div>
       </div>
 
-      <div class="popup" id="popup">
+      <!-- <div class="popup" id="popup">
         <div class="popup__body">
           <a href="#header" class="popup__close close-popup">
             <img src="@img/close.svg">
           </a>
           <div class="popup__content"></div>
         </div>
-      </div>
+      </div> -->
     </div>
   </main>
-  <div class="popup" id="win">
+  <!-- <div class="popup" id="win">
     <div class="popup__body">
       <div class="popup__content deletePadding">
         <div class="submit">
@@ -308,9 +308,9 @@ export default {
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
-  <div class="popup" id="submit-application">
+  <!-- <div class="popup" id="submit-application">
     <div class="popup__body">
       <div class="popup__content deletePadding">
         <div class="submit">
@@ -336,11 +336,11 @@ export default {
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
-  <a href="#submit-application" class="btn-link full575 show992 popup-link" data-da="menu_body,5,992">
+  <!-- <a href="#submit-application" class="btn-link full575 show992 popup-link" data-da="menu_body,5,992">
     <button type="submit" class="btn zayavka-btn full575">Оставить заявку</button>
-  </a>
+  </a> -->
 </template>
 
 <style scoped>

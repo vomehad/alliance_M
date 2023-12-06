@@ -101,7 +101,7 @@ export default {
       </div>
     </div>
   </main>
-  <div class="popup" id="win">
+  <!-- <div class="popup" id="win">
     <div class="popup__body">
       <div class="popup__content deletePadding">
         <div class="submit">
@@ -152,7 +152,7 @@ export default {
 
   <a href="#submit-application" class="btn-link full575 show992 popup-link" data-da="menu_body,5,992">
     <button type="submit" class="btn zayavka-btn full575">Оставить заявку</button>
-  </a>
+  </a> -->
 </template>
 
 <style scoped>
