@@ -2,6 +2,7 @@
 import axios from "axios";
 import { API_URL } from "../../main";
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
+
 export default {
   data() {
     return {
@@ -71,7 +72,6 @@ export default {
       }
     }
   },
-
   methods: {
     async getCar() {
       try {
@@ -93,7 +93,10 @@ export default {
       }
     },
     getAutoName() {
-      return `${this.car.configuration.model.brand.name} ${this.car.configuration.model.name} ${this.car.year}`;
+      const model = this.car.configuration.model;
+      const brand = this.car.configuration.model.brand;
+
+      return `${brand.name} ${model.name} ${this.car.year}`;
     },
     getPrice() {
       let price = this.prepareNum(this.car.price);
@@ -145,7 +148,20 @@ export default {
       setTimeout(() => {
         this.modalMessage = false;
       }, 3000)
-    }
+    },
+    initSlider() {
+      const options = {
+        type: "loop",
+        padding: window.innerWidth <= 575 ? "12px" : window.innerWidth >= 575 ? "24px" : "12px",
+        autoplay: true,
+        speed: 1000,
+        interval: 3000,
+        perPage: window.innerWidth >= 1023 ? 3 : window.innerWidth >= 767 ? 2 : window.innerWidth >= 574 ? 1 : 1,
+        perMove: 1,
+      };
+      const splide = new Splide("#detailSplite", options);
+      splide.mount();
+    },
   },
   mounted() {
     this.getCar();
@@ -391,14 +407,6 @@ export default {
       </div>
     </div>
   </main>
-
-  <div class="popup" id="car1">
-    <div class="popup__body">
-      <div class="popup__content popup-car-content">
-        <img src="@img/big-car.png" alt="CAR" class="popup-car" />
-      </div>
-    </div>
-  </div>
 </template>
 
 <style scoped lang="scss">
