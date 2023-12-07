@@ -89,16 +89,9 @@ export default {
     getTel() {
       return `tel:+7${this.app?.phone}` ?? 99;
     },
-    // showModal() {
-    //   // TODO показать модалку
-    //   this.modal = true;
-    //   // TODO оправить письмо
-    //   // TODO письмо отправлено
-    //   // TODO закрыть модалку
-    //   setTimeout(() => {
-    //     this.modal = false;
-    //   }, 3000)
-    // },
+    showModal() {
+      this.$emit('show-modal', this.car);
+    },
   },
 }
 </script>
@@ -150,13 +143,11 @@ export default {
           <a :href="getTel()" class="car-info_tel">
             <img src="@img/icons/contact.svg" alt="Contact">
           </a>
-<!--          <a href="/" class="btn-car-link">-->
           <button
               type="button"
               class="btn-car"
-              @click="$emit('show-modal')"
+              @click="showModal"
           >Оставить заявку</button>
-<!--          </a>-->
         </footer>
       </div>
     </div>

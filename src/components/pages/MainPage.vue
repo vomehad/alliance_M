@@ -22,7 +22,9 @@ export default {
       app: {
         phone: '9182599393'
       },
-      modal:false
+      modal: false,
+      modalSuccess: false,
+      reserved_car: {},
     }
   },
   components: {
@@ -184,16 +186,13 @@ export default {
     isMorePages() {
       return this.page.current !== this.page.last;
     },
-
-    showModal() {
-      // TODO показать модалку
+    showModal(car) {
       this.modal = !this.modal;
-      // TODO оправить письмо
-      // TODO письмо отправлено
-      // TODO закрыть модалку
-      // setTimeout(() => {
-      //   this.modal = false;
-      // }, 3000)
+      this.reserved_car = car;
+    },
+    showModalSuccess() {
+      this.modalSuccess = true;
+      setTimeout(() => this.modalSuccess = false, 3000)
     },
   },
   mounted() {
@@ -247,9 +246,13 @@ export default {
 
       <CreditForm />
 
-      <!-- <PopupWin v-show="false" /> -->
-
-      <PopupSubmit v-show="modal" @modal="showModal"/>
+      <PopupSubmit
+          v-if="modal"
+          @modal="showModal"
+          :car="reserved_car"
+          @modal-success="showModalSuccess"
+      />
+      <PopupWin v-if="modalSuccess" />
 
       <a href="#submit-application" class="btn-link full575 show992 popup-link" data-da="menu_body,5,992">
         <button type="submit" class="btn zayavka-btn full575">Оставить заявку</button>

@@ -6,6 +6,7 @@ import App from './App.vue'
 import router from './router'
 import globalComponents from './components/global'
 import VueSplide from '@splidejs/vue-splide';
+import Maska from 'vue-the-mask';
 
 const app = createApp(App)
 
@@ -14,4 +15,5 @@ export const API_URL = import.meta.env.VITE_API_URL
 app.use(router)
 app.use(globalComponents);
 app.use( VueSplide );
+app.use( Maska );
 app.mount('#app')

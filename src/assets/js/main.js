@@ -476,44 +476,44 @@ if (vakancies_block) {
 }
 
 
-const submitRequiredForm = document.querySelector('.submitRequiredForm');
-const submitRequiredFormHome = document.querySelector('.submitRequiredFormHome');
-const submitRequiredFormCredit = document.querySelector('.submitRequiredFormCredit');
-
-if (submitRequiredForm || submitRequiredFormHome || submitRequiredFormCredit) {
-    submitRequiredForm?.addEventListener('click', () => {
-        const input_1 = document.querySelector('.input-1');
-        const input_2 = document.querySelector('.input-2');
-        const myForm = {
-            name: input_1.value,
-            number: input_2.value
-        }
-        console.log(myForm);
-        alert(JSON.stringify(myForm))
-    })
-
-    submitRequiredFormHome?.addEventListener('click', () => {
-        const input_1 = document.querySelector('.inputHome-1');
-        const input_2 = document.querySelector('.inputHome-2');
-        const myForm = {
-            name: input_1.value,
-            number: input_2.value
-        }
-        console.log(myForm);
-        alert(JSON.stringify(myForm))
-    })
-
-    submitRequiredFormCredit?.addEventListener('click', () => {
-        const input_1 = document.querySelector('.inputCredit-1');
-        const input_2 = document.querySelector('.inputCredit-2');
-        const myForm = {
-            name: input_1.value,
-            number: input_2.value
-        }
-        console.log(myForm);
-        alert(JSON.stringify(myForm))
-    })
-}
+// const submitRequiredForm = document.querySelector('.submitRequiredForm');
+// const submitRequiredFormHome = document.querySelector('.submitRequiredFormHome');
+// const submitRequiredFormCredit = document.querySelector('.submitRequiredFormCredit');
+//
+// if (submitRequiredForm || submitRequiredFormHome || submitRequiredFormCredit) {
+//     submitRequiredForm?.addEventListener('click', () => {
+//         const input_1 = document.querySelector('.input-1');
+//         const input_2 = document.querySelector('.input-2');
+//         const myForm = {
+//             name: input_1.value,
+//             number: input_2.value
+//         }
+//         console.log(myForm);
+//         alert(JSON.stringify(myForm))
+//     })
+//
+//     submitRequiredFormHome?.addEventListener('click', () => {
+//         const input_1 = document.querySelector('.inputHome-1');
+//         const input_2 = document.querySelector('.inputHome-2');
+//         const myForm = {
+//             name: input_1.value,
+//             number: input_2.value
+//         }
+//         console.log(myForm);
+//         alert(JSON.stringify(myForm))
+//     })
+//
+//     submitRequiredFormCredit?.addEventListener('click', () => {
+//         const input_1 = document.querySelector('.inputCredit-1');
+//         const input_2 = document.querySelector('.inputCredit-2');
+//         const myForm = {
+//             name: input_1.value,
+//             number: input_2.value
+//         }
+//         console.log(myForm);
+//         alert(JSON.stringify(myForm))
+//     })
+// }
 const cars_buy = document.querySelector('.homeCars');
 const cars_buy2 = document.querySelector('.catalogCars');
 
