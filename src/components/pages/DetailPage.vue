@@ -207,12 +207,8 @@ export default {
     </div> -->
     <SplideSlide class="splide-slide" v-for="picture in car.pictures" :key="picture.id">
       <div>
-        <img
-            @click="showModal(true), getPictureSrc(picture.src)"
-            class="splide-img"
-            :src="picture.src"
-            :alt="picture.name"
-        >
+        <img @click="showModal(true), getPictureSrc(picture.src)" class="splide-img" :src="picture.src"
+          :alt="picture.name">
       </div>
       <!-- <transition name="component-fade" mode="out-in"> -->
       <!-- <div class="modal" v-if="modalOn">
@@ -227,7 +223,7 @@ export default {
     <div class="wrapper">
       <div class="detail-container">
         <div class="detail-body">
-          <div class="modal" v-if="modalOn">
+          <div class="modal" v-show="modalOn">
             <button class="close_btn" @click="showModal(false)"></button>
             <img class="modal_img" :src="currentPicture">
           </div>
@@ -572,11 +568,11 @@ $white: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: rgba(22, 22, 22, .8);
   backdrop-filter: blur(3px);
   z-index: 1000;
@@ -585,6 +581,7 @@ $white: #fff;
 .modal_img {
   width: 994px;
   height: 560px;
+  margin-top: 50px;
   object-fit: cover;
   border-radius: 32px;
   overscroll-behavior: none;
@@ -596,9 +593,8 @@ $white: #fff;
   }
 
   @media (max-width: 1000px) {
-    padding-top: 50px;
-    width: 60%;
-    height: 60%;
+    width: 90%;
+    height: 90%;
     border-radius: 0;
     object-fit: contain;
   }
@@ -608,7 +604,7 @@ $white: #fff;
 .close_btn {
   width: 40px;
   height: 44px;
-  position: absolute;
+  position: fixed;
   right: 0.5rem;
   top: 5.5rem;
   z-index: 11111;
@@ -619,7 +615,7 @@ $white: #fff;
 
   @media (max-width: 1440px) {
     right: 0.5rem;
-    top: 12.5rem;
+    top: 9.5rem;
   }
 }
 
