@@ -262,7 +262,7 @@ export default {
   </main>
 </template>
 
-<style scoped lang="scss">
+<style  lang="scss">
 .cars {
   margin: 56px 0px 0px 0px;
 }
@@ -279,6 +279,7 @@ export default {
   -ms-grid-columns: 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 24px;
+  min-width: 65dvw;
   @media (max-width: 992px) {
       gap: .5rem;
       grid-template-columns: 1fr 1fr;

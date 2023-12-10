@@ -396,6 +396,9 @@ export default {
   .person-card {
     min-height: 200px;
     width: 250px;
+    @media  screen and (max-width:550px) {
+      width: fit-content;
+    }
   }
 
   .person-card_image {

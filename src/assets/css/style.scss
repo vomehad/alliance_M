@@ -6,6 +6,12 @@ $primary_clr: #B40D16;
 $white: #fff;
 
 // ==================================================================//
+
+html {
+    @media screen and (max-width:550px){
+      overflow-x: hidden;
+    }
+}
 body {
   overflow-x: hidden;
 
@@ -39,12 +45,7 @@ body {
 }
 
 .main {
-  padding: 6rem 0 0 0;
   background-color: #F2F2F2;
-
-  @media (max-width: 767.98px) {
-    padding: 5rem 0 0 0;
-  }
 }
 
 .header {
@@ -760,6 +761,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 24px;
+    min-width: 65dvw;
 
     @media (max-width: 992px) {
       gap: .5rem;
@@ -1906,6 +1908,8 @@ button {
     ul li a {
       @media (max-width: 574.98px) {
         font-size: 1rem;
+        display: flex;
+        flex-direction: column;
       }
     }
   }
@@ -3697,6 +3701,9 @@ button {
 
       @media (max-width: 574.98px) {
         margin: 24px 0px 56px 0px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
 
