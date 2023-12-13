@@ -15,6 +15,7 @@ export default {
       ],
       menuMobile: false,
       menuClass: '',
+      isMobile: false,
     }
   },
   methods: {
@@ -32,23 +33,26 @@ export default {
     },
     showMobileMenu() {
       this.menuMobile = !this.menuMobile;
-      console.log(this.menuMobile);
 
       this.menuClass = this.menuMobile ? '_active' : '';
     }
   },
   mounted() {
     this.getOffices();
-  }
+  },
+  created() {
+    this.isMobile = window.matchMedia('(max-width: 990px)').matches;
+  },
 }
 </script>
 
 <template>
   <header class="header">
     <div class="header_container">
-      <a href="tel:+79180259393" class="phone_menu">
-        <img src="@img/icons/phone.svg">
-      </a>
+      <a class="phone_menu"
+          v-if="isMobile"
+          href="tel:+79180259393"
+      ><img src="@img/icons/phone.svg"></a>
       <div class="flex items-center header_logo_block">
         <div class="header_logo" data-da="header_container,1,992">
           <router-link to="/" class="logo">
@@ -58,7 +62,7 @@ export default {
             <img src="@img/logo-scroll.svg" alt="Logo">
           </router-link>
         </div>
-        <Navbar @click="showMobileMenu" :show="menuMobile"/>
+        <Navbar @click="showMobileMenu" :show="menuMobile" :isMobile="isMobile"/>
       </div>
       <div class="header_contact" data-da="menu_body,4,992" >
         <div
