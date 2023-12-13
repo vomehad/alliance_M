@@ -13,7 +13,8 @@ export default {
           email: '',
         },
       ],
-      menuType: false
+      menuType: false,
+      classMenu:false
     }
   },
   methods: {
@@ -33,23 +34,32 @@ export default {
       if(window.innerWidth < 550)this.menuType = !this.menuType
       else return
   },
+  changeMenuClass(){
+    if(window.scrollY > 300){
+      this.classMenu = true
+    } else {
+      this.classMenu = false
+    }
   },
+  },
+ 
   mounted() {
     this.getOffices();
+    window.addEventListener('scroll',this.changeMenuClass)
   }
 }
 </script>
 
 <template>
-  <header class="header">
+  <header  :class="classMenu ? '_scroll header': 'header'">
     <div class="header_container">
-      <div class="flex items-center header_logo_block">
+      <div :style="classMenu ? 'gap:6rem': ''" class="flex items-center header_logo_block">
         <div class="header_logo" data-da="header_container,1,992">
           <router-link to="/" class="logo">
-            <img src="@img/logo.svg" alt="Logo">
+            <img v-if="!classMenu" src="@img/logo.svg" alt="Logo">
           </router-link>
-          <router-link to="/" class="logo-scroll">
-            <img src="@img/logo-scroll.svg" alt="Logo">
+          <router-link  to="/" class="logo">
+            <img v-if="classMenu" src="@img/logo-scroll.svg" alt="Logo">
           </router-link>
         </div>
         <Navbar @click="changeMenu()" :className="!menuType ? 'menu' : '_active'"/>

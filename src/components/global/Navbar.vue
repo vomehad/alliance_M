@@ -8,9 +8,9 @@ defineProps({
 
 <template>
   <nav :class="className">
-    <a href="tel:+79180259393" class="phone_menu">
+    <!-- <a href="tel:+79180259393" class="phone_menu">
       <img src="@img/icons/phone.svg">
-    </a>
+    </a> -->
     <div :class="className + ' menu_body'">
       <ul class="menu_list">
         <li class="menu_item"><router-link to="/" class="menu_link"></router-link></li>
