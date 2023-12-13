@@ -1,17 +1,15 @@
-<script setup>
-import { defineProps } from 'vue';
+<script>
 
-defineProps({
-  className: String
-})
+export default {
+  props: {
+    show: false,
+  }
+}
 </script>
 
 <template>
-  <nav :class="className">
-    <a href="tel:+79180259393" class="phone_menu">
-      <img src="@img/icons/phone.svg">
-    </a>
-    <div :class="className + ' menu_body'">
+  <nav class="_active">
+    <div v-show="show" class="menu_body _active">
       <ul class="menu_list">
         <li class="menu_item"><router-link to="/" class="menu_link"></router-link></li>
         <li class="menu_item"><router-link  to="/catalog" class="menu_link">Каталог</router-link></li>

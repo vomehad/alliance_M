@@ -13,7 +13,8 @@ export default {
           email: '',
         },
       ],
-      menuType: false
+      menuMobile: false,
+      menuClass: '',
     }
   },
   methods: {
@@ -29,9 +30,12 @@ export default {
     prepareTel(tel) {
       return tel.replace(/7(\d{3})(\d{3})(\d{2})(\d{2})/, '7 ($1) $2 $3-$4');
     },
-    changeMenu(){
-    this.menuType = !this.menuType
-  },
+    showMobileMenu() {
+      this.menuMobile = !this.menuMobile;
+      console.log(this.menuMobile);
+
+      this.menuClass = this.menuMobile ? '_active' : '';
+    }
   },
   mounted() {
     this.getOffices();
@@ -42,6 +46,9 @@ export default {
 <template>
   <header class="header">
     <div class="header_container">
+      <a href="tel:+79180259393" class="phone_menu">
+        <img src="@img/icons/phone.svg">
+      </a>
       <div class="flex items-center header_logo_block">
         <div class="header_logo" data-da="header_container,1,992">
           <router-link to="/" class="logo">
@@ -51,7 +58,7 @@ export default {
             <img src="@img/logo-scroll.svg" alt="Logo">
           </router-link>
         </div>
-        <Navbar @click="changeMenu()" :className="!menuType ? 'menu' : '_active'"/>
+        <Navbar @click="showMobileMenu" :show="menuMobile"/>
       </div>
       <div class="header_contact" data-da="menu_body,4,992" >
         <div
@@ -66,7 +73,7 @@ export default {
           </a>
         </div>
       </div>
-      <div :class="'menu_icon '+ (!menuType? '' : '_active')" @click="changeMenu()">
+      <div class="menu_icon" :class="menuClass" @click="showMobileMenu">
         <span></span>
       </div>
     </div>
@@ -102,11 +109,15 @@ export default {
   </header>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .header_logo_block {
-  @media (max-width:900px){
+  @media (max-width:900px) {
     flex-direction: row-reverse;
     gap: 1rem;
   }
+}
+.phone_menu img {
+  width: 2rem;
+  height: 2rem;
 }
 </style>
