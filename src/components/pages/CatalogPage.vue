@@ -215,6 +215,7 @@ export default {
           <div class="cars_buy car catalogCars">
             <ul class="car_list" :key="key">
               <CarInfo v-for="car in cars" :key="car.id" :car="car" :app="app"/>
+              <li v-show="cars.length === 0"><span>По данным параметрам поиска, нету подходящих автомобилей</span></li>
             </ul>
           </div>
           <FilterCars @get-cars="getCarList" @clear="clear" :params="params"/>

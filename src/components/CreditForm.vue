@@ -2,18 +2,35 @@
 <script>
 import axios from 'axios'
 import { API_URL } from '../main'
+import PopupWin from './PopupWin.vue'
 export default {
-  name: "CreditForm",
-  data(){
-    return {
-      name:'',number:''
-    }
-  },
-  methods:{
-    async onSubmit(){
-      await axios.post(`${API_URL}/`)
-    }
-  }
+    name: "CreditForm",
+    data() {
+        return {
+            name: '',
+            number: '',
+            showPopUp: false
+        };
+    },
+    methods: {
+        async onSubmit() {
+          try{
+            const res = await axios.post(`${API_URL}/mail/application/credit`, {
+                    name: this.name, phone: this.number
+            });
+            if (res.status === 200) {
+                this.showPopUp = !this.showPopUp;
+            }
+            else {
+                console.log('err');
+            }}catch(e){
+              console.log(e);
+          }
+        }
+          
+            
+    },
+    components: { PopupWin }
 }
 </script>
 
@@ -31,6 +48,7 @@ export default {
       </form>
     </div>
   </div>
+  <PopupWin v-if="showPopUp"/>
 </template>
 
 <style scoped>
