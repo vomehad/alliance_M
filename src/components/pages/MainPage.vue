@@ -371,8 +371,8 @@ export default {
   margin: 2rem 0px;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr;
-  grid-template-columns: 1fr 1fr;
+  -ms-grid-columns: 1fr;
+  grid-template-columns: 1fr;
   -webkit-column-gap: 32px;
   -moz-column-gap: 32px;
   column-gap: 32px;
