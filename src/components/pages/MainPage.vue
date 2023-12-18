@@ -223,7 +223,7 @@ export default {
           <div class="cars_buy car homeCars">
             <ul class="car_list" :key="key">
               <CarInfo v-for="car in cars" :key="car.id" :car="car" :app="app" @show-modal="showModal"/>
-              <li v-show="cars.length === 0"><span>По данным параметрам поиска, нету подходящих автомобилей</span></li>
+              <li class="zero_item" v-show="cars.length === 0"><span>По данным параметрам поиска, нету подходящих автомобилей</span></li>
             </ul>
           </div>
 
@@ -272,27 +272,23 @@ export default {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  justify-content: center;
 }
 
 .car_list {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr;
-  grid-template-columns: 1fr 1fr 1fr;
+  -ms-grid-columns:  repeat(3,300px);
+  grid-template-columns:  repeat(3,300px);
   gap: 24px;
-  min-width: 65dvw;
   @media (max-width: 992px) {
       gap: .5rem;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(2,1fr);
     }
 
     @media (max-width: 767.98px) {
       grid-template-columns: 1fr;
       gap: .8rem;
-    }
-
-    @media (max-width: 500px) {
-      grid-template-columns: 1fr;
     }
 }
 
@@ -371,8 +367,8 @@ export default {
   margin: 2rem 0px;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr;
-  grid-template-columns: 1fr 1fr;
+  -ms-grid-columns: 1fr;
+  grid-template-columns: 1fr;
   -webkit-column-gap: 32px;
   -moz-column-gap: 32px;
   column-gap: 32px;

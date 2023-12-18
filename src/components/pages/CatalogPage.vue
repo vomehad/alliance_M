@@ -3,13 +3,20 @@ import CarInfo from "../CarInfo.vue";
 import FilterCars from "../FilterCars.vue";
 import axios from "axios";
 import { API_URL } from "../../main";
+import CreditForm from '../CreditForm.vue';
+import PopupSubmit from '../PopupSubmit.vue';
+import PopupWin from '../PopupWin.vue';
 
 export default {
   components: {
     CarInfo,
     FilterCars,
+    CreditForm,
+    PopupSubmit,
+    PopupWin,
   },
   data() {
+    CreditForm
     return {
       pageName: 'Каталог',
       cars: [],
@@ -21,10 +28,21 @@ export default {
       key: 0,
       app: {
         phone: '9182599393'
-      }
+      },
+      modal: false,
+      modalSuccess: false,
+      reserved_car: {},
     }
   },
   methods: {
+    showModal(car) {
+      this.modal = !this.modal;
+      this.reserved_car = car;
+    },
+    showModalSuccess() {
+      this.modalSuccess = true;
+      setTimeout(() => this.modalSuccess = false, 3000)
+    },
     async getCarList(data) {
       if (data?.brandList?.length) {
         this.params.brand = this.setBrand(data);
@@ -214,8 +232,8 @@ export default {
         <div class="cars_container">
           <div class="cars_buy car catalogCars">
             <ul class="car_list" :key="key">
-              <CarInfo v-for="car in cars" :key="car.id" :car="car" :app="app"/>
-              <li v-show="cars.length === 0"><span>По данным параметрам поиска, нету подходящих автомобилей</span></li>
+              <CarInfo v-for="car in cars" :key="car.id" :car="car" :app="app" @show-modal="showModal"/>
+              <li class="zero_item" v-show="cars.length === 0"><span>По данным параметрам поиска, нету подходящих автомобилей</span></li>
             </ul>
           </div>
           <FilterCars @get-cars="getCarList" @clear="clear" :params="params"/>
@@ -259,82 +277,19 @@ export default {
           />
         </div>
       </div>
-      <div class="form form-catalog">
-        <div class="form_container">
-          <div class="form_title">
-            <h1>хочешь</h1>
-            <p>оформить автокредит легко и просто?</p>
-          </div>
-          <form class="form_action">
-            <input required type="text" name="name" id="name" placeholder="Имя"/>
-            <input required type="tel" name="tel" id="tel" placeholder="+7 (123) 456-78-90"/>
-            <input type="submit" name="submitForm" id="submitForm" value="Отправить заявку"/>
-          </form>
-        </div>
-      </div>
+
+     <CreditForm/>
+     <PopupSubmit
+          v-if="modal"
+          @modal="showModal"
+          :car="reserved_car"
+          @modal-success="showModalSuccess"
+      />
+      <PopupWin v-if="modalSuccess" />
     </div>
-    <!-- <div class="popup" id="popup">
-      <div class="popup__body">
-        <a href="#header" class="popup__close close-popup">
-          <img src="@img/close.svg">
-        </a>
-        <div class="popup__content"></div>
-      </div>
-    </div> -->
+
   </main>
 
-  <!-- <div class="popup" id="win">
-    <div class="popup__body">
-      <div class="popup__content deletePadding">
-        <div class="submit">
-          <div class="submit_container">
-            <div class="flex justify-between items-center">
-              <h1 class="submit_title">Заявка успешно отправлена</h1>
-              <a href="#header" class="close-popup close-modal">
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M30 10L10 30" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M10 10L30 30" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
-            </div>
-            <p class="wait">Наш специалист вскоре с вами свяжется</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
-
-  <!-- <div class="popup" id="submit-application">
-    <div class="popup__body">
-      <div class="popup__content deletePadding">
-        <div class="submit">
-          <div class="submit_container">
-            <div class="flex justify-between items-center">
-              <h1 class="submit_title">Оставить заявку</h1>
-              <a href="#header" class="close-popup close-modal">
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M30 10L10 30" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M10 10L30 30" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
-            </div>
-            <form class="submit_form" id="submit">
-              <input required type="text" id="name" minlength="2" placeholder="Имя" class="input-1"/>
-              <input required type="tel" id="tel" placeholder="+7 (___) ___-__-__" class="input-2"/>
-              <a href="#win" class="btn-link popup-link w-100">
-                <button type="submit" class="btn zayavka-btn w-100 submitRequiredForm">Отправить</button>
-              </a>
-            </form>
-            <p>Нажимая на кнопку “Отправить”, вы даете согласие на обработку перс. данных</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
-<!-- 
-  <a href="#submit-application" class="btn-link full575 show992 popup-link" data-da="menu_body,5,992">
-    <button type="submit"  class="btn zayavka-btn full575">Оставить заявку</button>
-  </a> -->
 </template>
 
 <style scoped>
