@@ -24,6 +24,8 @@ export default {
       modal: false,
       modalSuccess: false,
       reserved_car: {},
+      name:'',
+      number:'',
     }
   },
   components: {
@@ -205,6 +207,23 @@ export default {
       this.modalSuccess = true;
       setTimeout(() => this.modalSuccess = false, 3000)
     },
+    async onSubmit() {
+          try{
+            const res = await axios.post(`${API_URL}/api/mail/application/credit`, {
+                    name: this.name, number: this.number
+            });
+            if (res.status === 200) {
+                this.modalSuccess = true;
+                setTimeout(()=>{
+                  this.modalSuccess = false;
+                },3000)
+            }
+            else {
+                console.log('err');
+            }}catch(e){
+              console.log(e);
+          }
+        },
   },
   mounted() {
     this.getCarList();
@@ -219,7 +238,7 @@ export default {
       <div class="form credit">
         <div class="form_container credit_container">
           <div class="credit_title">кредит<br /><span>ОТ 7%</span></div>
-          <form class="form_action" @submit.prevent="">
+          <form class="form_action" @submit.prevent="onSubmit()">
             <input required type="text" v-model="this.name" name="name" class="inputCredit-1" id="name" placeholder="Имя">
             <input required type="tel" v-model="this.number" name="tel" class="inputCredit-2" id="tel" placeholder="+7 (123) 456-78-90">
             <input type="submit" name="submitForm" id="submitForm" class="submitRequiredFormCredit" value="Отправить заявку">

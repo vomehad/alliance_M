@@ -19,7 +19,6 @@ export default {
                     name: this.name, number: this.number
             });
             if (res.status === 200) {
-              console.log("suc")
                 this.showPopUp = true;
                 setTimeout(()=>{
                   this.showPopUp = false;

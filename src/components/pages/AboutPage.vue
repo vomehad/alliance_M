@@ -1,7 +1,8 @@
 <script>
 import axios from "axios";
 import { API_URL } from "../../main";
-
+import ForDirectorForm from "../ForDirectorForm.vue"
+import PopupSubmit from "../PopupSubmit.vue";
 export default {
   data() {
     return {
@@ -55,7 +56,13 @@ export default {
         }
       ],
       active: false,
+      hideForm:false,
+      sucModal:false
     }
+  },
+  components: {
+    ForDirectorForm,
+    PopupSubmit,
   },
   methods: {
     async getSalePersons() {
@@ -101,6 +108,15 @@ export default {
       } catch (e) {
         console.log('ABOUT', e);
       }
+    },
+    hideFormRe() {
+      this.hideForm = !this.hideForm
+    },
+    modalSuccess(){
+      this.sucModal = true
+      setTimeout(()=>{
+        this.sucModal = false
+      },3000)
     }
   },
   mounted() {
@@ -276,7 +292,7 @@ export default {
             <div class="writing_text">
               <h1>Уважаемые клиенты!</h1>
               <p>Здесь вы можете оставить отзывы, предложения и пожелания к работе компании «Альянс Моторс», а также ее сотрудников</p>
-              <button type="button" class="primary-btn">Письмо директору</button>
+              <button type="button" class="primary-btn" @click="hideFormRe()">Письмо директору</button>
             </div>
             <div class="writing_img">
               <img src="@img/card-with-red-envelope.png">
@@ -329,62 +345,11 @@ export default {
             </ul>
           </div>
         </section>
+        <ForDirectorForm v-if="hideForm" @modal="hideFormRe" @modalSuccess="modalSuccess"/>
+          <PopupSubmit v-if="sucModal"/>
       </section>
     </div>
   </main>
-
-  <!-- <div class="popup" id="win">
-    <div class="popup__body">
-      <div class="popup__content deletePadding">
-        <div class="submit">
-          <div class="submit_container">
-            <div class="flex justify-between items-center">
-              <h1 class="submit_title">Заявка успешно отправлена</h1>
-              <a href="#header" class="close-popup close-modal">
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M30 10L10 30" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M10 10L30 30" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
-            </div>
-            <p class="wait">Наш специалист вскоре с вами свяжется</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="popup" id="submit-application">
-    <div class="popup__body">
-      <div class="popup__content deletePadding">
-        <div class="submit">
-          <div class="submit_container">
-            <div class="flex justify-between items-center">
-              <h1 class="submit_title">Оставить заявку</h1>
-              <a href="#header" class="close-popup close-modal">
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M30 10L10 30" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M10 10L30 30" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
-            </div>
-            <form class="submit_form" id="submit">
-              <input required type="text" id="name" minlength="2" placeholder="Имя" class="input-1"/>
-              <input required type="tel" id="tel" placeholder="+7 (___) ___-__-__" class="input-2"/>
-              <a href="#win" class="btn-link popup-link w-100">
-                <button type="submit" class="btn zayavka-btn w-100 submitRequiredForm">Отправить</button>
-              </a>
-            </form>
-            <p>Нажимая на кнопку “Отправить”, вы даете согласие на обработку перс. данных</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
-
-  <!-- <a href="#submit-application" class="btn-link full575 show992 popup-link" data-da="menu_body,5,992">
-    <button type="submit" class="btn zayavka-btn full575">Оставить заявку</button>
-  </a> -->
 </template>
 
 <style scoped>
