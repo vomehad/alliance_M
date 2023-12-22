@@ -591,14 +591,14 @@ $white: #fff;
   overflow-y: hidden;
 
   @media (max-width: 1440px) {
-    width: 60%;
-    height: 60%;
+    //width: 60%;
+    height: 100%;
   }
 
   @media (max-width: 1000px) {
     padding-top: 50px;
-    width: 60%;
-    height: 60%;
+    //width: 60%;
+    height: 100%;
     border-radius: 0;
     object-fit: contain;
   }
