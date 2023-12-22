@@ -15,11 +15,14 @@ export default {
     methods: {
         async onSubmit() {
           try{
-            const res = await axios.post(`${API_URL}/mail/application/credit`, {
-                    name: this.name, phone: this.number
+            const res = await axios.post(`${API_URL}/api/mail/application/credit`, {
+                    name: this.name, number: this.number
             });
             if (res.status === 200) {
-                this.showPopUp = !this.showPopUp;
+                this.showPopUp = true;
+                setTimeout(()=>{
+                  this.showPopUp = false;
+                },3000)
             }
             else {
                 console.log('err');
@@ -35,7 +38,7 @@ export default {
 </script>
 
 <template>
-  <div class="form" @submit.prevent="onSubmit">
+  <div v-if="!showPopUp" class="form" @submit.prevent="onSubmit()">
     <div class="form_container">
       <div class="form_title">
         <h1>хочешь</h1>

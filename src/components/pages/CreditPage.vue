@@ -3,6 +3,8 @@ import CarInfo from "../CarInfo.vue";
 import FilterCars from "../FilterCars.vue";
 import axios from "axios";
 import { API_URL } from "../../main";
+import PopupWin from "../PopupWin.vue";
+import PopupSubmit from "../PopupSubmit.vue";
 
 export default {
   data() {
@@ -17,11 +19,20 @@ export default {
       app: {
         phone: '9182599393'
       }
+      ,name:'',
+      number:'',
+      modal: false,
+      modalSuccess: false,
+      reserved_car: {},
+      name:'',
+      number:'',
     }
   },
   components: {
     CarInfo,
     FilterCars,
+    PopupSubmit,
+    PopupWin,
   },
   methods: {
     async getCarList(data) {
@@ -188,6 +199,31 @@ export default {
         console.log(e);
       }
     },
+    showModal(car) {
+      this.modal = !this.modal;
+      this.reserved_car = car;
+    },
+    showModalSuccess() {
+      this.modalSuccess = true;
+      setTimeout(() => this.modalSuccess = false, 3000)
+    },
+    async onSubmit() {
+          try{
+            const res = await axios.post(`${API_URL}/api/mail/application/credit`, {
+                    name: this.name, number: this.number
+            });
+            if (res.status === 200) {
+                this.modalSuccess = true;
+                setTimeout(()=>{
+                  this.modalSuccess = false;
+                },3000)
+            }
+            else {
+                console.log('err');
+            }}catch(e){
+              console.log(e);
+          }
+        },
   },
   mounted() {
     this.getCarList();
@@ -202,9 +238,9 @@ export default {
       <div class="form credit">
         <div class="form_container credit_container">
           <div class="credit_title">кредит<br /><span>ОТ 7%</span></div>
-          <form class="form_action">
-            <input required type="text" name="name" class="inputCredit-1" id="name" placeholder="Имя">
-            <input required type="tel" name="tel" class="inputCredit-2" id="tel" placeholder="+7 (123) 456-78-90">
+          <form class="form_action" @submit.prevent="onSubmit()">
+            <input required type="text" v-model="this.name" name="name" class="inputCredit-1" id="name" placeholder="Имя">
+            <input required type="tel" v-model="this.number" name="tel" class="inputCredit-2" id="tel" placeholder="+7 (123) 456-78-90">
             <input type="submit" name="submitForm" id="submitForm" class="submitRequiredFormCredit" value="Отправить заявку">
           </form>
         </div>
@@ -257,7 +293,7 @@ export default {
         <div class="cars_container">
           <div class="cars_buy car homeCars">
             <ul class="car_list" :key="key">
-              <CarInfo v-for="car in cars" :key="car.id" :car="car" :app="app"/>
+              <CarInfo v-for="car in cars" :key="car.id" :car="car" :app="app" @show-modal="showModal"/>
             </ul>
           </div>
 
@@ -279,14 +315,13 @@ export default {
         </div>
       </div>
 
-      <!-- <div class="popup" id="popup">
-        <div class="popup__body">
-          <a href="#header" class="popup__close close-popup">
-            <img src="@img/close.svg">
-          </a>
-          <div class="popup__content"></div>
-        </div>
-      </div> -->
+      <PopupSubmit
+          v-if="modal"
+          @modal="showModal"
+          :car="reserved_car"
+          @modal-success="showModalSuccess"
+      />
+      <PopupWin v-if="modalSuccess" />
     </div>
   </main>
   <!-- <div class="popup" id="win">
