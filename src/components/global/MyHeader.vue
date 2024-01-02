@@ -31,7 +31,7 @@ export default {
       return tel.replace(/7(\d{3})(\d{3})(\d{2})(\d{2})/, '7 ($1) $2 $3-$4');
     },
     changeMenu(){
-      if(window.innerWidth < 550)this.menuType = !this.menuType
+      if(window.innerWidth < 600)this.menuType = !this.menuType
       else return
   },
   changeMenuClass(){
@@ -64,7 +64,7 @@ export default {
         </div>
         <Navbar @click="changeMenu()" :className="!menuType ? 'menu' : '_active'"/>
       </div>
-      <div class="header_contact" data-da="menu_body,4,992" >
+      <div :class="!menuType ? 'header_contact ': 'header_contact active'" data-da="menu_body,4,992" >
         <div
             v-for="office in offices"
             :key="office.id"
