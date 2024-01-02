@@ -590,6 +590,7 @@ $white: #fff;
 }
 
 .modal_img {
+  margin-top: 3rem;
   width: 994px;
   height: 560px;
   object-fit: cover;
