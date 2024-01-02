@@ -1,7 +1,9 @@
 <script>
 import Splide from "@splidejs/splide";
+import PopUpSimple from './PopUpSimple.vue';
 
 export default {
+  components: { PopUpSimple },
   data() {
     return {
       origin: location.origin,
@@ -27,9 +29,6 @@ export default {
       // TODO оправить письмо
       // TODO письмо отправлено
       // TODO закрыть модалку
-      setTimeout(() => {
-        this.modal = false;
-      }, 3000)
     }
   },
   mounted() {
@@ -39,6 +38,7 @@ export default {
 </script>
 
 <template>
+      <PopUpSimple :showPopUp="this.modal"/>
   <section class="splide" id="homeSplide" aria-label="Splide">
     <div class="splide__arrows">
       <button
@@ -46,7 +46,7 @@ export default {
           aria-controls="splide01-track"
           class="splide__arrow homeNextSlide splide__arrow--prev splide_my-btn-prev"
       ></button>
-      <button
+      <button 
           class="splide__arrow splide__arrow--next homePrevSlide splide_my-btn-next"
       ></button>
     </div>
@@ -71,7 +71,7 @@ export default {
                   <button
                       type="button"
                       class="btn-slide"
-                      @click="showModal()"
+                      @click="showModal"
                   >Оставить заявку</button>
 <!--                  </a>-->
                 </div>
@@ -97,7 +97,7 @@ export default {
                   <button
                       type="button"
                       class="btn-slide"
-                      @click="showModal()"
+                      @click="showModal"
                   >Оставить заявку</button>
 <!--                  </a>-->
                 </div>
@@ -122,7 +122,7 @@ export default {
                   <button
                       type="button"
                       class="btn-slide"
-                      @click="showModal()"
+                      @click="showModal"
                   >Оставить заявку</button>
 <!--                  </a>-->
                 </div>

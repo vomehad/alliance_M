@@ -32,6 +32,7 @@ export default {
       modal: false,
       modalSuccess: false,
       reserved_car: {},
+      filterHide:false
     }
   },
   methods: {
@@ -207,6 +208,9 @@ export default {
         console.log(e);
       }
     },
+    switchFilter(){
+      this.filterHide=!this.filterHide
+    }
   },
   mounted() {
     this.getCarList();
@@ -225,9 +229,11 @@ export default {
           <div class="flex items-center">
             <div id="select-catalog"></div>
           </div>
-          <a href="#popup" class="popup_btn popup-link">
-            <img src="@img/icons/filter-filter.svg" alt="Filter">
-          </a>
+          <div class="flex items-center">
+            <div class="filter_cars-elem" @click="switchFilter">
+              <img src="@img/icons/filter-filter.svg" alt="Filter">
+            </div>
+          </div>
         </div>
         <div class="cars_container">
           <div class="cars_buy car catalogCars">
@@ -236,7 +242,7 @@ export default {
               <li class="zero_item" v-show="cars.length === 0"><span>По данным параметрам поиска, нету подходящих автомобилей</span></li>
             </ul>
           </div>
-          <FilterCars @get-cars="getCarList" @clear="clear" :params="params"/>
+          <FilterCars @get-cars="getCarList" :hide="filterHide" @switch="switchFilter" @clear="clear" :params="params"/>
         </div>
       </div>
 

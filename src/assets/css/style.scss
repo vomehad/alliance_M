@@ -909,10 +909,6 @@ body {
     display: flex;
     align-items: center;
 
-    @media (max-width: 574.98px) {
-      flex-direction: column;
-    }
-
     @media (max-width: 500px) {
       flex-direction: row;
     }
@@ -1084,7 +1080,7 @@ body {
 .filter {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
   gap: 16px;
   background: $white;
   border-radius: 20px;
@@ -1501,8 +1497,15 @@ button {
   justify-content: end;
   margin: 0;
 
+  // @media (max-width: 574.98px) {
+  //   justify-content: space-between;
+  // }
+}
+.filter_cars-elem {
+  display: none;
+  margin-bottom: 0.5rem;
   @media (max-width: 574.98px) {
-    justify-content: space-between;
+    display: flex;
   }
 }
 

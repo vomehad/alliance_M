@@ -47,7 +47,8 @@ export default {
     }
   },
   props: {
-    params: {}
+    params: {},
+    hide:false,
   },
   computed: {
     hasNew() {
@@ -188,6 +189,9 @@ export default {
         },
       }
       this.$emit('clear', this.selected);
+    },
+    switchFilter(){
+      this.$emit('switch',this.hide)
     }
   },
   mounted() {
@@ -197,13 +201,14 @@ export default {
 </script>
 
 <template>
-  <div class="filter_body">
+  <div class="filter_body" :style="this.hide ? 'right:0' : 'right:-100%'">
     <div class="cars_filter filter">
+      <button @click.stop="switchFilter" class="filter_close">X</button>
       <div class="filter_container">
         <div>
           <div class="flex justify-between items-center">
             <h1 class="filter_title">Фильтр</h1>
-            <button type="button" class="btn-clear" @click="clearFilters">
+            <button type="button" class="btn-clear" @click="switchFilter">
 <!--              <img src="../assets/svg/basket.svg" alt="new-model">-->
               <svg
                   width="16"
@@ -501,5 +506,14 @@ export default {
 </template>
 
 <style scoped>
-
+.filter_close {
+  display: none;
+  @media  (max-width:600px) {
+    margin-top: 1rem;
+    margin-right: 1rem;
+    display: block;
+    font-size: 24px;
+    color: #8E8E8E;
+  }
+}
 </style>

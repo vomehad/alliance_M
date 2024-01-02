@@ -24,6 +24,7 @@ export default {
       },
       modal: false,
       modalSuccess: false,
+      filterHide:false,
       reserved_car: {},
     }
   },
@@ -194,7 +195,11 @@ export default {
       this.modalSuccess = true;
       setTimeout(() => this.modalSuccess = false, 3000)
     },
+    switchFilter(){
+      this.filterHide=!this.filterHide
+    }
   },
+ 
   mounted() {
     this.getCarList();
     this.getAppNumber();
@@ -211,7 +216,9 @@ export default {
       <div class="cars">
         <div class="select-filter">
           <div class="flex items-center">
-            <div id="select-filter"></div>
+            <div class="filter_cars-elem" @click="switchFilter">
+              <img src="@img/icons/filter-filter.svg" alt="Filter">
+            </div>
           </div>
           <div class="flex items-center">
             <router-link to="/" class="popup_btn filter-show">
@@ -227,7 +234,7 @@ export default {
             </ul>
           </div>
 
-          <FilterCars @get-cars="getCarList" @clear="clear" :params="params"/>
+          <FilterCars @get-cars="getCarList" :hide="filterHide" @switch="switchFilter" @clear="clear" :params="params"/>
 
         </div>
         <div class="watch">

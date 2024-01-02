@@ -2,10 +2,16 @@
 import axios from "axios";
 import { API_URL } from "../../main";
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
+import PopupSubmit from '../PopupSubmit.vue'
 
 export default {
+  components: {
+    PopupSubmit,
+  },
   data() {
     return {
+      showModalSuccess:false,
+      modalMessage:false,
       car: {
         id: 0,
         configuration: {
@@ -141,13 +147,10 @@ export default {
     },
     showMessageModal() {
       // TODO показать модалку
-      this.modalMessage = true;
+      this.modalMessage = !this.modalMessage;
       // TODO оправить письмо
       // TODO письмо отправлено
       // TODO закрыть модалку
-      setTimeout(() => {
-        this.modalMessage = false;
-      }, 3000)
     },
     initSlider() {
       const options = {
@@ -172,6 +175,10 @@ export default {
 
 <template>
   <main class="main">
+    <PopupSubmit  v-if="modalMessage"
+          @modal="showMessageModal"
+          :car="car"
+          @modal-success="showModalSuccess"/>
     <div class="wrapper">
       <MyBreadcrumbs :page="pageName" />
       <div class="detail-product">
@@ -189,7 +196,7 @@ export default {
             </div>
             <div class="zayavka-block">
               <a href="#submit-application" class="btn-link popup-link full575">
-                <button type="button" class="btn zayavka-btn full575 submit-zayavka-btn">Заявка на кредит</button>
+                <button type="button" class="btn zayavka-btn full575 submit-zayavka-btn" @click="showMessageModal">Заявка на кредит</button>
               </a>
               <a :href="getTel()" class="btn-link white-link full575">
                 <button type="button" class="btn red-text number-btn full575">{{ appPhone }}</button>
@@ -252,7 +259,7 @@ export default {
               </div>
               <div class="detail-btns">
                 <a href="#submit-application" class="btn-link popup-link" data-da="detail-product-price_container,2,575">
-                  <button type="button" class="btn zayavka-btn full575">Заявка на кредит</button>
+                  <button type="button" class="btn zayavka-btn full575" @click="showMessageModal">Заявка на кредит</button>
                 </a>
                 <a href="#" class="btn-link white-link">
                   <button type="button" class="btn red-text number-btn2">Обмен авто</button>
