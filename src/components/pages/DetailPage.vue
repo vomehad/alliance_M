@@ -394,7 +394,7 @@ export default {
             <h1>Комплектация</h1>
             <div class="details" v-for="(detail, key) in getConfiguration()" :key="key">{{ detail }}</div>
             </div>
-            <button v-if="!this.detailHidden" class="details_btn" @click="switchDetailHidden">Показать все</button>
+            <button v-if="!this.detailHidden && getConfiguration().length > 16" class="details_btn" @click="switchDetailHidden">Показать все</button>
           </div>
         </div>
       </div>
