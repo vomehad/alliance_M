@@ -10,6 +10,7 @@ export default {
   },
   data() {
     return {
+      detailHidden:false,
       showModalSuccess:false,
       modalMessage:false,
       car: {
@@ -164,6 +165,10 @@ export default {
       };
       const splide = new Splide("#detailSplite", options);
       splide.mount();
+    },
+    switchDetailHidden(){
+      console.log(this.detailHidden)
+      this.detailHidden = !this.detailHidden
     },
   },
   mounted() {
@@ -384,9 +389,12 @@ export default {
             </div>
             <div class="detail-logo"><img src="@img/logo.svg" /></div>
           </div>
-          <div class="detail-complectation">
+          <div class="details_wrapper">
+            <div :class="this.detailHidden ? 'detail-complectation active' : 'detail-complectation'">
             <h1>Комплектация</h1>
             <div class="details" v-for="(detail, key) in getConfiguration()" :key="key">{{ detail }}</div>
+            </div>
+            <button v-if="!this.detailHidden" class="details_btn" @click="switchDetailHidden">Показать все</button>
           </div>
         </div>
       </div>
