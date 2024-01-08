@@ -52,6 +52,9 @@ body {
 .header {
 
   // .header_contact
+  .active {
+    display: flex;
+  }
   &_contact {
     display: flex;
     z-index: 11;
@@ -67,6 +70,8 @@ body {
     }
     @media  (max-width: 800px){
       display: none;
+      position: absolute;
+      bottom: -60vh;
     }
   }
 }
@@ -910,10 +915,6 @@ body {
     display: flex;
     align-items: center;
 
-    @media (max-width: 574.98px) {
-      flex-direction: column;
-    }
-
     @media (max-width: 500px) {
       flex-direction: row;
     }
@@ -1085,7 +1086,7 @@ body {
 .filter {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
   gap: 16px;
   background: $white;
   border-radius: 20px;
@@ -1502,8 +1503,15 @@ button {
   justify-content: end;
   margin: 0;
 
-  @media (max-width: 574.98px) {
-    justify-content: space-between;
+  // @media (max-width: 574.98px) {
+  //   justify-content: space-between;
+  // }
+}
+.filter_cars-elem {
+  display: none;
+  margin-bottom: 0.5rem;
+  @media (max-width: 1320px) {
+    display: flex;
   }
 }
 
@@ -2793,12 +2801,22 @@ button {
   }
 }
 
+.details_wrapper {
+  position: relative;
+}
+.detail-complectation.active {
+  max-height:max-content;
+  transition:all 1s ease-in-out;
+}
 .detail-complectation {
   width: 100%;
   height: 100%;
   padding: 24px;
   background: #fff;
   border-radius: 24px;
+  overflow-y: hidden;
+  transition:all 1s ease-in-out;
+  max-height: 100dvh;
 
   @media (max-width: 1175px) {
     padding: 1rem;
@@ -2870,7 +2888,22 @@ button {
     line-height: 120%;
   }
 }
-
+.details_btn {
+  position: absolute;
+  bottom: -30px;
+  margin: 10px 0;
+  width: 100%;
+  border: none;
+  outline: 0;
+  background: 0 0;
+  color: #b40d16;
+  text-align: center;
+  font-size: 1rem;
+  cursor: pointer;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+}
 .hide-text,
 .detail-img {
   display: none;

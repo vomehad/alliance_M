@@ -26,6 +26,7 @@ export default {
       reserved_car: {},
       name:'',
       number:'',
+      filterHide:false
     }
   },
   components: {
@@ -224,6 +225,9 @@ export default {
               console.log(e);
           }
         },
+        switchFilter(){
+      this.filterHide=!this.filterHide
+    }
   },
   mounted() {
     this.getCarList();
@@ -285,9 +289,9 @@ export default {
             <div id="select-filter"></div>
           </div>
           <div class="flex items-center">
-            <router-link to="/" class="popup_btn filter-show">
+            <div class="filter_cars-elem" @click="switchFilter">
               <img src="@img/icons/filter-filter.svg" alt="Filter">
-            </router-link>
+            </div>
           </div>
         </div>
         <div class="cars_container">
@@ -297,7 +301,7 @@ export default {
             </ul>
           </div>
 
-          <FilterCars @get-cars="getCarList" @clear="clear" :params="params"/>
+          <FilterCars @get-cars="getCarList" :hide="filterHide" @switch="switchFilter" @clear="clear" :params="params"/>
 
         </div>
         <div class="watch">
