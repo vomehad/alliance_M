@@ -221,16 +221,17 @@ export default {
             </div>
           </div>
           <div class="flex items-center">
-            <router-link to="/" class="popup_btn filter-show">
-              <img src="@img/icons/contact.svg" alt="Filter">
-            </router-link>
           </div>
         </div>
         <div class="cars_container" :key="key">
-          <div class="cars_buy car homeCars">
+          <div class="cars_buy car homeCars" v-if="cars.length">
             <ul class="car_list" :key="key">
               <CarInfo v-for="car in cars" :key="car.id" :car="car" :app="app" @show-modal="showModal"/>
-              <li class="zero_item" v-show="cars.length === 0"><span>По данным параметрам поиска, нету подходящих автомобилей</span></li>
+            </ul>
+          </div>
+          <div class="cars_buy car homeCars" v-else>
+            <ul class="car_list" :key="key">
+              <li class="zero_item"><span>По данным параметрам поиска, нету подходящих автомобилей</span></li>
             </ul>
           </div>
 
@@ -287,7 +288,8 @@ export default {
   display: grid;
   -ms-grid-columns:  repeat(3,300px);
   grid-template-columns:  repeat(3,300px);
-  gap: 24px;
+  //gap: 24px;
+  gap: 0;
   @media (max-width: 992px) {
       gap: .5rem;
       grid-template-columns: repeat(2,1fr);
@@ -330,6 +332,7 @@ export default {
 }
 
 .car-info_img {
+  border-radius: 15px;
   -o-object-fit: cover;
   object-fit: cover;
   width: 100%;
