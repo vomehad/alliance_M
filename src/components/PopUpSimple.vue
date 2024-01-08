@@ -16,6 +16,9 @@ export default {
       showPopUp: false
     },
     methods: {
+      swich(){
+        this.$emit('showModal')
+      },
         async onSubmit() {
           try{
             const res = await axios.post(`${API_URL}/api/mail/application/credit`, {
@@ -42,7 +45,9 @@ export default {
 </script>
 
 <template>
-  <div v-if="showPopUp" class="form simple-form" @submit.prevent="onSubmit()">
+  <div>
+    <div class="form simple-form" @submit.prevent="onSubmit()">
+  <button class="simple_close" @click="swich">X</button>
     <div class="form_container">
       <form class="form_action">
         <input required type="text" name="name" id="name" v-model="name" class="inputHome-1" placeholder="Имя">
@@ -52,9 +57,18 @@ export default {
     </div>
   </div>
   <PopupWin v-if="showPopUpWin"/>
+  </div>
 </template>
 
 <style scoped>
+.form_action {
+  margin: 20px 0 0 0;
+}
+.simple_close {
+  color: aliceblue;
+  font-size: 20px;
+  text-align: right;
+}
 .simple-form {
   position: absolute;
   top: 25%;
@@ -65,6 +79,10 @@ export default {
   background: #000;
   @media (max-width:600px) {
     left: 20%;
+    top: 30vh;
+  }
+  @media (max-width:400px) {
+    left: 12%;
     top: 30vh;
   }
 }

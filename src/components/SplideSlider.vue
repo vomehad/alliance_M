@@ -25,7 +25,7 @@ export default {
     },
     showModal() {
       // TODO показать модалку
-      this.modal = true;
+      this.modal = !this.modal;
       // TODO оправить письмо
       // TODO письмо отправлено
       // TODO закрыть модалку
@@ -38,7 +38,7 @@ export default {
 </script>
 
 <template>
-      <PopUpSimple :showPopUp="this.modal"/>
+      <PopUpSimple v-if="this.modal" @showModal="this.showModal"/>
   <section class="splide" id="homeSplide" aria-label="Splide">
     <div class="splide__arrows">
       <button
