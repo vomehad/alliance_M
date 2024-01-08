@@ -220,11 +220,11 @@ export default {
               <img src="@img/icons/filter-filter.svg" alt="Filter">
             </div>
           </div>
-<!--          <div class="flex items-center">-->
-<!--            <router-link to="/" class="popup_btn filter-show">-->
-<!--              <img src="@img/icons/contact.svg" alt="Filter">-->
-<!--            </router-link>-->
-<!--          </div>-->
+          <!-- <div class="flex items-center">
+            <router-link to="/" class="popup_btn filter-show">
+              <img src="@img/icons/contact.svg" alt="Filter">
+            </router-link>
+          </div> -->
         </div>
         <div class="cars_container" :key="key">
           <div class="cars_buy car homeCars" v-if="cars.length">

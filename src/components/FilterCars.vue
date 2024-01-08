@@ -508,7 +508,7 @@ export default {
 <style scoped>
 .filter_close {
   display: none;
-  @media  (max-width:600px) {
+  @media  (max-width:1320px) {
     margin-top: 1rem;
     margin-right: 1rem;
     display: block;
